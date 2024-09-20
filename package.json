@@ -13,7 +13,13 @@
     "autoload": {
         "files": [
             "app/Helpers/helpers.php"
-            ]
+        ]
+    },
+    "dependencies": {
+        "@inertiajs/vue3": "^1.0.15",
+        "@vitejs/plugin-vue": "^5.0.4",
+        "chart.js": "^4.4.4",
+        "vue": "^3.4.21",
+        "vue-chart-3": "^3.1.2"
     }
-
 }
