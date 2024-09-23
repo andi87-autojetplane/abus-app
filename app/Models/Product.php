@@ -25,4 +25,6 @@ class Product extends Model
                 get: fn ($value) => url('/storage/products/' . $value),
             );
         }
+
+
 }
