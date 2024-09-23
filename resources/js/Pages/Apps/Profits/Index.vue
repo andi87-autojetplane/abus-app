@@ -1,6 +1,6 @@
 <template>
     <Head>
-        <title>Report Sales - Aplikasi Kasir</title>
+        <title>Report Profits - Aplikasi Kasir</title>
     </Head>
     <main class="c-main">
         <div class="container-fluid">
@@ -9,7 +9,7 @@
                     <div class="col-md-12">
                         <div class="card border-0 rounded-3 shadow border-top-purple">
                             <div class="card-header">
-                                <span class="font-weight-bold"><i class="fa fa-chart-bar"></i> REPORT SALES</span>
+                                <span class="font-weight-bold"><i class="fa fa-chart-line"></i> REPORT PROFITS</span>
                             </div>
                             <div class="card-body">
                                 <form @submit.prevent="filter">
@@ -41,32 +41,28 @@
                                     </div>
                                 </form>
 
-                                <div v-if="sales">
+                                <div v-if="profits">
                                     <hr>
                                     <div class="export text-end mb-3">
-                                        <a :href="`/apps/sales/export?start_date=${start_date}&end_date=${end_date}`" target="_blank" class="btn btn-success btn-md border-0 shadow me-3"><i class="fa fa-file-excel"></i> EXCEL</a>
-                                        <a :href="`/apps/sales/pdf?start_date=${start_date}&end_date=${end_date}`" target="_blank" class="btn btn-secondary btn-md border-0 shadow"><i class="fa fa-file-pdf"></i> PDF</a>
+                                        <a :href="`/apps/profits/export?start_date=${start_date}&end_date=${end_date}`" target="_blank" class="btn btn-success btn-md border-0 shadow me-3"><i class="fa fa-file-excel"></i> EXCEL</a>
+                                        <a :href="`/apps/profits/pdf?start_date=${start_date}&end_date=${end_date}`" target="_blank" class="btn btn-secondary btn-md border-0 shadow"><i class="fa fa-file-pdf"></i> PDF</a>
                                     </div>
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr style="background-color: #e6e6e7;">
                                                 <th scope="col">Date</th>
                                                 <th scope="col">Invoice</th>
-                                                <th scope="col">Cashier</th>
-                                                <th scope="col">Customer</th>
                                                 <th scope="col">Total</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="sale in sales" :key="sale.id">
-                                                <td>{{ sale.created_at }}</td>
-                                                <td class="text-center">{{ sale.invoice }}</td>
-                                                <td>{{ sale.cashier.name }}</td>
-                                                <td>{{ sale.customer ? sale.customer.name : 'Umum' }}</td>
-                                                <td class="text-end">Rp. {{ formatPrice(sale.grand_total) }}</td>
+                                            <tr v-for="profit in profits" :key="profit.id">
+                                                <td>{{ profit.created_at }}</td>
+                                                <td class="text-center">{{ profit.transaction.invoice }}</td>
+                                                <td class="text-end">Rp. {{ formatPrice(profit.total) }}</td>
                                             </tr>
                                             <tr>
-                                                <td colspan="4" class="text-end fw-bold" style="background-color: #e6e6e7;">TOTAL</td>
+                                                <td colspan="2" class="text-end fw-bold" style="background-color: #e6e6e7;">TOTAL</td>
                                                 <td class="text-end fw-bold" style="background-color: #e6e6e7;">Rp. {{ formatPrice(total) }}</td>
                                             </tr>
                                         </tbody>
@@ -93,7 +89,7 @@
     import { ref } from 'vue';
 
     export default {
-        //layout App
+        //layout
         layout: LayoutApp,
 
         //register components
@@ -105,7 +101,7 @@
         //props
         props: {
             errors: Object,
-            sales: Array,
+            profits: Array,
             total: Number
         },
 
@@ -114,16 +110,12 @@
 
             //define state
             const start_date = ref('' || (new URL(document.location)).searchParams.get('start_date'));
-            const end_date = ref('' || (new URL(document.location)).searchParams.get('end_date'));
-
+            const end_date   = ref('' || (new URL(document.location)).searchParams.get('end_date'));
 
             //define methods filter
             const filter = () => {
 
-                //HTTP request
-                router.get('/apps/sales/filter', {
-
-                    //send data to server
+                router.get('/apps/profits/filter', {
                     start_date: start_date.value,
                     end_date: end_date.value,
                 });
@@ -133,7 +125,7 @@
             return {
                 start_date,
                 end_date,
-                filter
+                filter,
             }
 
         }
