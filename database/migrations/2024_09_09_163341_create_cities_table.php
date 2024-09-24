@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('province_id')->constrained()->cascadeOnDelete();
             $table->string('city_code');
+            $table->string('name_lengkap',60);
+            $table->string('jenis',60);
             $table->string('name',60);
             $table->timestamps();
         });

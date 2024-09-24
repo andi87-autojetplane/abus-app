@@ -23,7 +23,7 @@
           <!-- end content -->
 
           <footer class="c-footer">
-            <div><strong>APLIKASI KASIR</strong> &copy; 2024 - abus-app.my.id</div>
+            <div><strong>Abus v.0.1</strong> &copy; 2024 - abus-app.my.id</div>
           </footer>
         </div>
       </div>
