@@ -7,6 +7,13 @@ Route::get('/', function () {
     return \Inertia\Inertia::render('Auth/Login');
 })->middleware('guest');
 
+//prefix "admin"
+Route::prefix('admins')->group(function() {
+    Route::group(['middleware' => ['auth']], function(){
+        Route::get('dashboard', App\Http\Controllers\Admins\AdminDashboardController::class )->name('admins.dashboard');
+    });
+});
+
 //prefix "apps"
 Route::prefix('apps')->group(function() {
 

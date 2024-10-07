@@ -7,8 +7,8 @@
         <div class="fade-in">
             <div class="text-center mb-4">
                 <a href="" class="text-dark text-decoration-none">
-                    <img src="/images/cash-machine.png" width="70">
-                    <h3 class="mt-2 font-weight-bold">APLIKASI KASIR</h3>
+                    <img src="/images/abus.png" width="70">
+                    <h3 class="mt-2 font-weight-bold">Abus App | Login</h3>
                 </a>
             </div>
             <div class="card-group">

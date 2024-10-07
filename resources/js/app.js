@@ -26,6 +26,19 @@ createInertiaApp({
             return hasPermission;
           },
 
+        //   hasAnyRole: function (roles) {
+
+        //     //get roles from props
+        //     let allRoles = this.$page.props.auth.roles;
+
+        //     let hasRole = false;
+        //     roles.forEach(function(item){
+        //       if(allRoles[item]) hasRole = true;
+        //     });
+
+        //     return hasRole;
+        //   },
+
           //format price
           formatPrice(value) {
             let val = (value/1).toFixed(0).replace('.', ',')
